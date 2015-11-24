@@ -1,15 +1,16 @@
 ## Repositori de suport
 
-Repositori de gestió de l'assignatura mitjançant l'eina d'issues.
+Repositori de gestiÃ³ de l'assignatura mitjanÃ§ant l'eina d'issues.
 
 ### Suport
 Plantegeu els vostres dubtes obrint un nou issue en aquest repositori.
 
 ### Instruccions per les entregues setmanals
 
-Busqueu l'issue de l'entrega corresponent (El títol dels issues d'entrega és la data límit).
+Busqueu l'issue de l'entrega corresponent (El tÃ­tol dels issues d'entrega Ã©s la data lÃ­mit).
 
-Responeu l'issue amb un missatge amb el nom del vostre equip i l'enllaç públic a la presentació a Google Drive.
+Responeu l'issue amb un missatge amb el nom del vostre equip i l'enllaÃ§ pÃºblic a la presentaciÃ³ a Google Drive.
+
 
 ### Instructions for the random classifier and ranker
 
@@ -20,4 +21,14 @@ Responeu l'issue amb un missatge amb el nom del vostre equip i l'enllaç públic a
 - Run `classify.py` and `rank.py` to generate results
 - Run `eval_classification.py` and `eval_ranking.py` to evaluate the results. For a better analysis of the results, take a look at `notebooks/gdsa_s4.ipynb`. 
 
+### Results
+
+| Team                  | mAP (retrieval) | mAP (classification) |
+| -------------         | --------------- | -------------------- |
+| [Building Recognizer](http://gdsa-upc.github.io/Building-Recognizer/)   | TBD             | TBD                  |
+| RdE                   | TBD             | TBD                  |
+| [What a building !](http://gdsa-upc.github.io/What-a-building-App/)     | TBD             | TBD                  |
+| Discover Terrassa     | TBD             | TBD                  |
+| [Egara View](http://gdsa-upc.github.io/Egara-View/)            | TBD             | TBD                  |
+| [International Team](http://gdsa-upc.github.io/International-Team/)    | TBD             | TBD                  |
 
