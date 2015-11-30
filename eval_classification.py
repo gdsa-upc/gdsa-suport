@@ -35,10 +35,18 @@ def eval_classification(params):
     # Load the true annotations
     annotation_val = pd.read_csv(os.path.join(params['root'],params['database'],params['split'],'annotation.txt'), sep='\t', header = 0)
     true_labels = annotation_val['ClassID'].tolist()
+    names = annotation_val['ImageID'].tolist()
+    
+    # Sort in ascending order for correspondance with predictions
+    true_labels = list(np.array(true_labels)[np.argsort(np.array(names))])
     
     # Load the predictions
     prediction_file = pd.read_csv(os.path.join(params['root'],params['root_save'],params['classification_dir'],params['descriptor_type'], params['split'] + '_classification.txt'), sep='\t', header = None)
     prediction_labels = prediction_file[1].tolist()
+    prediction_names = prediction_file[0].tolist()
+    
+    # Sort in ascending order for correspondence with Ground Truth Annotations
+    prediction_labels = list(np.array(prediction_labels)[np.argsort(np.array(prediction_names))])
     
     # Compute evaluation metrics
     cm = confusion_matrix(true_labels,prediction_labels)
@@ -63,4 +71,10 @@ if __name__ == "__main__":
     
     f1, precision, recall, accuracy,cm, labels = eval_classification(params)
     
-    print np.mean(f1)
+    print f1
+    print "F1:", np.mean(f1)
+    print "Precision:", np.mean(precision)
+    print "Recall:", np.mean(recall)
+    print "Accuracy:", accuracy
+    
+    plot_confusion_matrix(cm, labels,normalize = True)
