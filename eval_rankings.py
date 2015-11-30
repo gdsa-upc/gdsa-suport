@@ -8,7 +8,8 @@ import cv2
 def display(params,query_id,ranking,relnotrel):
     
     ''' Display the first elements of the ranking '''
-    
+
+
     # Read query image
     query_im =  cv2.imread(os.path.join(params['root'],params['database'],params['split'], 'images',query_id.split('.')[0] + '.jpg'))
     
@@ -138,6 +139,9 @@ def eval_rankings(params):
     
     ap_list = []
     
+    # THIS IS OPTIONAL: Create a dictionary to store the accumulated AP for each class
+    dict_ = {key: 0 for key in params['possible_labels']}
+        
     # Get true annotations
     annotation_val, annotation_train = read_annotation(params)
     
@@ -155,18 +159,45 @@ def eval_rankings(params):
             
             # Calculate average precision of the list
             ap = AveragePrecision(relnotrel)
-                        
+            
+            
+            # OPTIONAL: Add the AP to the according dictionary entry
+            dict_[query_class] += ap
+            
             # Store it
             ap_list.append(ap)
             
 
-    return ap_list
+    return ap_list, dict_
+
+def single_eval(params,query_id):
     
+    # We get the true annotations of both sets. We do this in order to display this information as well.
+    annotation_val, annotation_train = read_annotation(params)
+    
+    # We get the ranking and the true class of the query
+    query_class, ranking = load_ranking(params,query_id,annotation_val)
+    
+    # I made sure I was not picking an image from the "desconegut" class ...
+    print query_class
+    
+    # The ranking is composed of the training images. It should be of size 450.
+    print len(ranking)
+    
+    # We get the hit/miss list for the ranking
+    relnotrel = get_hitandmiss(ranking,query_class,annotation_train)
+    
+    display(params,query_id,ranking,relnotrel)
    
 if __name__ == "__main__":
     
     params = get_params()
     
-    ap_list = eval_ranking(params)
+    ap_list, dict_ = eval_rankings(params)
     
     print np.mean(ap_list)
+
+    for id in dict_.keys():
+        if not id == 'desconegut':
+            # We divide by 10 because it's the number of images per class in the validation set.
+            print id, dict_[id]/10

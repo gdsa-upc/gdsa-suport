@@ -1,8 +1,6 @@
-## Repositori de suport
+## Suport i entregues setmanals
 
-Repositori de gestió de l'assignatura mitjançant l'eina d'issues.
-
-### Suport
+### Eina d'issues
 Plantegeu els vostres dubtes obrint un nou issue en aquest repositori.
 
 ### Instruccions per les entregues setmanals
@@ -11,17 +9,30 @@ Busqueu l'issue de l'entrega corresponent (El títol dels issues d'entrega és l
 
 Responeu l'issue amb un missatge amb el nom del vostre equip i l'enllaç públic a la presentació a Google Drive.
 
+## [NEW] Code Instructions
 
-### Instructions for the random classifier and ranker
+### Setup
 
-- Edit the file `utils/params.py` so that `params['root']` points to the directory where you have the dataset `TerrassaBuildings900` and where you would like to store all the intermediate files.
-- Run `utils/params.py`. Notice that this will create directories as well, so make sure you did the previous step ! 
-- Run `build_database.py` to generate text files with image IDs for both the training and validation sets.
-- Run `get_features.py` to generate random features for both training and validation sets and store them independently in dictionaries.
-- Run `classify.py` and `rank.py` to generate results
-- Run `eval_classification.py` and `eval_ranking.py` to evaluate the results. For a better analysis of the results, take a look at `notebooks/gdsa_s4.ipynb`. 
+- Edit the file `utils/params.py` so that `params['root']` points to the directory where you have the dataset `TerrassaBuildings900` and where you would like to store all the intermediate files. You can also modify some of the parameters there (such as the codebook size, the keypoint detector, etc.)
+- Run `utils/params.py`. Notice that this will create directories as well, so make sure you did the previous step !
+- Run `build_database.py` to generate text files with image IDs for both the training and validation sets. 
 
-### Results
+### Feature extraction
+
+- Run `get_features.py`. This will first train a codebook, and then build BoW vectors for the training and validation/test images.
+
+### S5: Ranking Instructions
+
+
+- Run `rank.py` to compute distances from validation images to train images and generate the rankings.
+- Run `eval_rankings.py` to obtain the mean Average Precision of your rankings.
+- For a step by step tutorial and a better analysis of the results, check `notebooks/gdsa_s5.ipynb`
+
+### S6: Classification Instructions
+
+- To be updated
+
+## Results
 
 | Team                  | mAP (retrieval) | mAP (classification) |
 | -------------         | --------------- | -------------------- |
