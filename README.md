@@ -37,9 +37,9 @@ Responeu l'issue amb un missatge amb el nom del vostre equip i l'enllaç públic
 | Team                  | mAP (retrieval) | mAP (classification) |
 | -------------         | --------------- | -------------------- |
 | [Building Recognizer](http://gdsa-upc.github.io/Building-Recognizer/)   | TBD             | TBD                  |
-| RdE                   | TBD             | TBD                  |
+| [RdE](http://gdsa-upc.github.io/RdE/)                                   | TBD             | TBD                  |
 | [What a building !](http://gdsa-upc.github.io/What-a-building-App/)     | TBD             | TBD                  |
-| Discover Terrassa     | TBD             | TBD                  |
-| [Egara View](http://gdsa-upc.github.io/Egara-View/)            | TBD             | TBD                  |
+| [Discover Terrassa](http://gdsa-upc.github.io/Discover-Terrassa/)       | TBD             | TBD                  |
+| [Egara View](http://gdsa-upc.github.io/Egara-View/)                     | TBD             | TBD                  |
 | [International Team](http://gdsa-upc.github.io/International-Team/)    | TBD             | TBD                  |
 
