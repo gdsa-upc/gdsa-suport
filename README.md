@@ -1,13 +1,13 @@
-## Suport i entregues setmanals
+## Support and Weekly deliverables
 
-### Eina d'issues
-Plantegeu els vostres dubtes obrint un nou issue en aquest repositori.
+### Instructions for students:
 
-### Instruccions per les entregues setmanals
+- Issues: Open new issues in this repository to pose your questions.
+- Deliverables: A new issue will be created in this repository for you to upload your weekly deliverables (Google Slides). Find it and answer with a public link to your slides before the deadline.
 
-Busqueu l'issue de l'entrega corresponent (El títol dels issues d'entrega és la data límit).
+## Data download: TerrassaBuildings900
 
-Responeu l'issue amb un missatge amb el nom del vostre equip i l'enllaç públic a la presentació a Google Drive.
+Go to the project main website to download the dataset (to be updated).
 
 ## Code Instructions
 
