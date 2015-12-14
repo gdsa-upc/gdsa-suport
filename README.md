@@ -5,9 +5,9 @@ Plantegeu els vostres dubtes obrint un nou issue en aquest repositori.
 
 ### Instruccions per les entregues setmanals
 
-Busqueu l'issue de l'entrega corresponent (El títol dels issues d'entrega és la data límit).
+Busqueu l'issue de l'entrega corresponent (El tÃ­tol dels issues d'entrega Ã©s la data lÃ­mit).
 
-Responeu l'issue amb un missatge amb el nom del vostre equip i l'enllaç públic a la presentació a Google Drive.
+Responeu l'issue amb un missatge amb el nom del vostre equip i l'enllaÃ§ pÃºblic a la presentaciÃ³ a Google Drive.
 
 ## Code Instructions
 
@@ -35,11 +35,4 @@ Responeu l'issue amb un missatge amb el nom del vostre equip i l'enllaç públic a
 
 ## Results
 
-| Team                  | mAP (retrieval) | mAP (classification) |
-| -------------         | --------------- | -------------------- |
-| [Building Recognizer](http://gdsa-upc.github.io/Building-Recognizer/)   | TBD             | TBD                  |
-| [RdE](http://gdsa-upc.github.io/RdE/)                                   | TBD             | TBD                  |
-| [What a building !](http://gdsa-upc.github.io/What-a-building-App/)     | TBD             | TBD                  |
-| [Discover Terrassa](http://gdsa-upc.github.io/Discover-Terrassa/)       | TBD             | TBD                  |
-| [Egara View](http://gdsa-upc.github.io/Egara-View/)                     | TBD             | TBD                  |
-| [International Team](http://gdsa-upc.github.io/International-Team/)    | TBD             | TBD                  |
+You can check the leaderboard in the [repository website](http://gdsa-upc.github.io/gdsa-suport/).
