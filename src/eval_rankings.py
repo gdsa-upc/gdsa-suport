@@ -1,7 +1,14 @@
-import os
+import os, sys
 import pandas as pd
 import numpy as np
-from utils.params import get_params
+from params import get_params
+
+# We need to add the source code path to the python path if we want to call modules such as 'utils'
+params = get_params()
+sys.path.insert(0,params['src'])
+
+import utils.kaggle_scripts as kaggle_scripts
+
 import matplotlib.pyplot as plt
 import cv2
 
@@ -138,12 +145,26 @@ def load_ranking(params,query_id, annotation_val):
 def eval_rankings(params):
     
     ap_list = []
-    
-    # THIS IS OPTIONAL: Create a dictionary to store the accumulated AP for each class
+
+    # Prepare to save kaggle friendly file with all rankings
+    if params['save_for_kaggle']:
+
+        file_to_save = open(os.path.join(params['root'],params['root_save'],params['kaggle_dir'],params['descriptor_type'] + '_' + params['split'] + '_ranking.csv'),'w')
+
+        # Write first line with header
+        file_to_save.write("Query,RetrievedDocuments\n")
+
+    # Create a dictionary to store the accumulated AP for each class
     dict_ = {key: 0 for key in params['possible_labels']}
         
     # Get true annotations
     annotation_val, annotation_train = read_annotation(params)
+
+    '''
+    # Used once to save ranking annotations for kaggle competition.
+    gt_file_to_save = open(os.path.join(params['root'],params['root_save'],params['kaggle_dir'],params['split'] + '_rankingannotation.csv'),'w')
+    kaggle_scripts.convert_ranking_annotation(annotation_val,annotation_train,gt_file_to_save)
+    '''
     
     # For all generated rankings
     for val_id in os.listdir(os.path.join(params['root'],params['root_save'],params['rankings_dir'],params['descriptor_type'],params['split'])):
@@ -152,8 +173,11 @@ def eval_rankings(params):
         
         # We do not evaluate the queries in the unknown class ! 
         if not query_class == "desconegut":
-            
-            
+
+            if params['save_for_kaggle']:
+
+                file_to_save = kaggle_scripts.save_ranking_file(file_to_save,val_id,ranking)
+
             # Get the hit & miss list
             relnotrel = get_hitandmiss(ranking,query_class,annotation_train)
             
@@ -166,7 +190,10 @@ def eval_rankings(params):
             
             # Store it
             ap_list.append(ap)
-            
+
+    if params['save_for_kaggle']:
+
+        file_to_save.close()
 
     return ap_list, dict_
 

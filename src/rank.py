@@ -1,8 +1,7 @@
 import os
-import random
 import pickle
 import numpy as np
-from utils.params import get_params
+from params import get_params
 from sklearn.metrics.pairwise import pairwise_distances
 
 def rank(params):

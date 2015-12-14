@@ -1,0 +1,8 @@
+# Avoid notebook checkpoints
+notebooks/.ipynb_checkpoints
+
+# Avoid .pyc and ~ extensions
+*.pyc
+*.py~ 
+*.md~
+*.gitignore~

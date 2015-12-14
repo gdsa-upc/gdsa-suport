@@ -1,5 +1,5 @@
 import os
-from utils.params import get_params
+from params import get_params
 
 def build_database(params):
 

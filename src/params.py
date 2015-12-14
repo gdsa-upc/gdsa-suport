@@ -1,4 +1,4 @@
-import os
+import os,sys
 import pandas as pd
 import numpy as np
 
@@ -11,6 +11,8 @@ def get_params():
     '''
     params = {}
 
+    params['src'] = '/imatge/asalvador/workspace/teaching/teachers/'
+    
     # Source data
     params['root'] = '/imatge/asalvador/work/gdsa-projecte/'
     params['database'] = 'TerrassaBuildings900'
@@ -26,15 +28,27 @@ def get_params():
     params['rankings_dir'] = 'rankings'
     params['classification_dir'] = 'classification'
     params['codebooks_dir'] = 'codebooks'
+    params['classifiers_dir'] = 'classifiers'
+    params['kaggle_dir'] = 'kaggle'
    
 
     # Parameters
     params['split'] = 'val'
-    params['descriptor_size'] = 512 # Number of clusters
+    params['descriptor_size'] = 1024 # Number of clusters
     params['descriptor_type'] = 'SIFT'
     params['keypoint_type'] = 'SIFT'
     params['max_size'] = 300 # Widht size
     params['distance_type'] = 'euclidean'
+    params['save_for_kaggle'] = True
+    
+    # Classification
+    params['classifier'] = 'SVM'
+    params['svm_tune'] =[{'kernel': ['rbf'], 'gamma': [1e-1, 1e-2, 1e-3, 1e-4, 1e-5],
+                     'C': [0.1, 1, 10, 100, 1000]},
+                    {'kernel': ['linear'], 'C': [0.1, 1, 10, 100, 1000]}] # Parameters to tune the SVM
+    
+    params['num_neighbors'] = 3 # For KNN
+    params['manual_balance'] = False
     
     # Normalization of local descriptors
     params['whiten'] = False
@@ -79,7 +93,8 @@ def create_dirs(params):
     make_dir(os.path.join(save_dir,params['rankings_dir']))
     make_dir(os.path.join(save_dir,params['classification_dir']))
     make_dir(os.path.join(save_dir,params['codebooks_dir']))
-
+    make_dir(os.path.join(save_dir,params['classifiers_dir']))
+    make_dir(os.path.join(save_dir,params['kaggle_dir']))
     
     make_dir(os.path.join(save_dir,params['rankings_dir'],params['descriptor_type']))
     make_dir(os.path.join(save_dir,params['rankings_dir'],params['descriptor_type'],params['split']))

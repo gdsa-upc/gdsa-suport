@@ -1,10 +1,16 @@
-from utils.params import get_params
+from params import get_params
+import sys
+
+# We need to add the source code path to the python path if we want to call modules such as 'utils'
+params = get_params()
+sys.path.insert(0,params['src'])
+
 from utils.rootsift import RootSIFT
 import os, time
 import numpy as np
 import pickle
 import cv2
-from sklearn.cluster import KMeans, MiniBatchKMeans
+from sklearn.cluster import MiniBatchKMeans
 from sklearn.preprocessing import normalize, StandardScaler
 from sklearn.decomposition import PCA
 import warnings
@@ -173,7 +179,7 @@ def stack_features(params):
 
 def train_codebook(params,X):
 
-    # Init, n_jobs = -1 makes sure all available CPUs are used.
+    # Init kmeans instance
     km = MiniBatchKMeans(params['descriptor_size'])
 
     # Training the model with our descriptors
