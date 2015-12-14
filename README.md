@@ -7,7 +7,7 @@
 
 ## Data download: TerrassaBuildings900
 
-Go to the project main website to download the dataset (to be updated).
+Go to the [project main website](https://imatge.upc.edu/web/resources/terrassa-buildings-900) to download the dataset.
 
 ## Code Instructions
 
