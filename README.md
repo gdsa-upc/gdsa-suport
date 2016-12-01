@@ -11,6 +11,11 @@ Go to the [project main website](https://imatge.upc.edu/web/resources/terrassa-b
 
 ## Code Instructions
 
+### Requirements
+- [Python 2.7](https://www.python.org/download/releases/2.7/)
+- Install pip following [these](https://pip.pypa.io/en/stable/installing/) instructions.
+- Run ```pip install -r requirements.txt``` to install code dependencies.
+
 ### Setup
 
 - Edit the file `src/params.py` so that `params['root']` points to the directory where you have the dataset `TerrassaBuildings900` and where you would like to store all the intermediate files. You can also modify some of the parameters there (such as the codebook size, the keypoint detector, etc.)
