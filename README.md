@@ -14,8 +14,10 @@ Go to the [project main website](https://imatge.upc.edu/web/resources/terrassa-b
 ### Requirements
 - [Python 2.7](https://www.python.org/download/releases/2.7/)
 - Install pip following [these](https://pip.pypa.io/en/stable/installing/) instructions.
-- Run ```pip install -r requirements.txt``` to install code dependencies.
+- Run ```pip install -r requirements.txt``` to install code dependencies (numpy,scipy,pandas,scikit-learn). These can also be installed through the Canopy package manager.
+- Install OpenCV 2.4.x from [source](http://opencv.org/downloads.html) (instructions [here](http://docs.opencv.org/2.4/doc/tutorials/introduction/table_of_content_introduction/table_of_content_introduction.html)) or using the [package manager](https://www.enthought.com/products/canopy/package-index/) in Canopy with the free academic subscription (the latter is recommended for simplicity).
 
+Note: version 3.x of OpenCV will not work with the current version of the code since SIFT and SURF extraction modules were removed.
 ### Setup
 
 - Edit the file `src/params.py` so that `params['root']` points to the directory where you have the dataset `TerrassaBuildings900` and where you would like to store all the intermediate files. You can also modify some of the parameters there (such as the codebook size, the keypoint detector, etc.)
