@@ -12,16 +12,16 @@ def get_params():
     params = {}
 
     params['src'] = '/imatge/asalvador/workspace/teaching/teachers/'
-    
+
     # Source data
-    params['root'] = '/imatge/asalvador/work/gdsa-projecte/'
+    params['root'] = '/work/asalvador/gdsa-projecte/'
     params['database'] = 'TerrassaBuildings900'
 
     # To generate
-    
+
     # 'root_save' directory goes under 'root':
     params['root_save'] = 'save'
-    
+
     # All the following go under 'root_save':
     params['image_lists'] = 'image_lists'
     params['feats_dir'] = 'features'
@@ -30,7 +30,7 @@ def get_params():
     params['codebooks_dir'] = 'codebooks'
     params['classifiers_dir'] = 'classifiers'
     params['kaggle_dir'] = 'kaggle'
-   
+
 
     # Parameters
     params['split'] = 'val'
@@ -40,25 +40,25 @@ def get_params():
     params['max_size'] = 300 # Widht size
     params['distance_type'] = 'euclidean'
     params['save_for_kaggle'] = True
-    
+
     # Classification
     params['classifier'] = 'SVM'
     params['svm_tune'] =[{'kernel': ['rbf'], 'gamma': [1e-1, 1e-2, 1e-3, 1e-4, 1e-5],
                      'C': [0.1, 1, 10, 100, 1000]},
                     {'kernel': ['linear'], 'C': [0.1, 1, 10, 100, 1000]}] # Parameters to tune the SVM
-    
+
     params['num_neighbors'] = 3 # For KNN
     params['manual_balance'] = False
-    
+
     # Normalization of local descriptors
     params['whiten'] = False
     params['normalize_feats'] = False
     params['scale'] = False
-    
-    
+
+
     # We read the training annotations to know the set of possible labels
     data = pd.read_csv(os.path.join(params['root'],params['database'],'train','annotation.txt'), sep='\t', header = 0)
-    
+
     # Store them in the parameters dictionary for later use
     params['possible_labels'] = np.unique(data['ClassID'])
 
@@ -95,7 +95,7 @@ def create_dirs(params):
     make_dir(os.path.join(save_dir,params['codebooks_dir']))
     make_dir(os.path.join(save_dir,params['classifiers_dir']))
     make_dir(os.path.join(save_dir,params['kaggle_dir']))
-    
+
     make_dir(os.path.join(save_dir,params['rankings_dir'],params['descriptor_type']))
     make_dir(os.path.join(save_dir,params['rankings_dir'],params['descriptor_type'],params['split']))
     make_dir(os.path.join(save_dir,params['classification_dir'],params['descriptor_type']))
@@ -103,4 +103,3 @@ def create_dirs(params):
 if __name__ == "__main__":
 
     params = get_params()
-
