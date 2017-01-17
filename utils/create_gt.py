@@ -4,6 +4,7 @@ import sys, time
 import glob
 import random
 import shutil
+from PIL import Image
 
 """
 This will create annotation files for the dataset in params['image_dir'].
@@ -20,10 +21,9 @@ def get_params():
     params = {}
 
     # Directories
-    params['root'] = '/imatge/asalvador/'
-    params['image_dir'] = "/work/gdsa-projecte/raw"
-    params['workspace'] = "/imatge/asalvador/workspace/teaching/gdsa/teachers/utils"
-    params['save_dir'] = "/work/gdsa-projecte/TerrassaBuildings900"
+    params['image_dir'] = "/work/asalvador/gdsa-projecte/raw"
+    params['save_dir'] = "/work/asalvador/gdsa-projecte/TB2016"
+    params['imsize'] = 500
 
     # Splitting parameters
 
@@ -33,12 +33,13 @@ def get_params():
 
     return params
 
-def setup(params):
+def resize_image(img,basewidth):
 
-    os.getcwd()
-    os.chdir(params['workspace'])
+    wpercent = (basewidth/float(img.size[0]))
+    hsize = int((float(img.size[1])*float(wpercent)))
+    img = img.resize((basewidth,hsize), Image.ANTIALIAS)
 
-    print "Working directory set to:", os.getcwd()
+    return img
 
 def makedir(path):
     if not os.path.exists(path):
@@ -47,8 +48,10 @@ def makedir(path):
 def split_class(params,class_elements):
 
     train_split = class_elements[0:int(params['train_split']*len(class_elements))]
-    val_split = class_elements[int(params['train_split']*len(class_elements)):int(params['train_split']*len(class_elements)) + int(params['val_split']*len(class_elements)) ]
-    test_split = class_elements[int(params['train_split']*len(class_elements)) + int(params['val_split']*len(class_elements)):]
+    val_split = class_elements[int(params['train_split']*len(class_elements)):int(params['train_split']*len(class_elements))
+                               + int(params['val_split']*len(class_elements)) ]
+    test_split = class_elements[int(params['train_split']*len(class_elements))
+                                + int(params['val_split']*len(class_elements)):]
 
     return train_split, val_split, test_split
 
@@ -66,13 +69,18 @@ def save_txt(params,names,labels,partition):
         file.write(str(names[index]) + "\t" + str(labels[index]) + "\n")
     file.close()
 
-def move_files(params,names,c,partition):
-    # actually not moving but copying cause you never know
+def cp_images(params,names,c,partition):
+
     makedir(os.path.join(params['save_dir'], partition))
     makedir(os.path.join(params['save_dir'], partition, 'images'))
+
     for name in names:
 
-        shutil.copy(os.path.join(params['image_dir'],c,name), os.path.join(params['save_dir'], partition, 'images',name))
+        I = Image.open(os.path.join(params['image_dir'],c,name))
+        I = resize_image(I,params['imsize'])
+        I.save(os.path.join(params['save_dir'], partition, 'images',name))
+
+        #shutil.copy(os.path.join(params['image_dir'],c,name), os.path.join(params['save_dir'], partition, 'images',name))
 
 def save_annotations(params):
 
@@ -107,9 +115,9 @@ def save_annotations(params):
         print "="*10
         # Move files to partition directories
 
-        move_files(params,train_split,c,'train')
-        move_files(params,val_split,c,'val')
-        move_files(params,test_split,c,'test')
+        cp_images(params,train_split,c,'train')
+        cp_images(params,val_split,c,'val')
+        cp_images(params,test_split,c,'test')
 
         # Add to the partition lists
         train.extend(train_split)
@@ -141,5 +149,4 @@ if __name__ == "__main__":
     if len(sys.argv)>1:
         params['image_dir'] = sys.argv[1]
         params['save_dir'] = sys.argv[2]
-    #setup(params)
     save_annotations(params)
