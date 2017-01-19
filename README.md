@@ -38,7 +38,7 @@ Note: version 3.x of OpenCV will not work with the current version of the code s
 
 ### Kaggle rankings
 
-There is a script ```utils/convert_to_kaggle.py ``` that will take your rankings and convert them to be uploaded to Kaggle.
+There is a script ```utils/save_for_kaggle.py ``` that will take your rankings and convert them to be uploaded to Kaggle.
 
 ### Deep features (coming soon !)
 
