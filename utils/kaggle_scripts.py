@@ -2,15 +2,17 @@ import numpy as np
 import pandas
 import sys,os
 import random
+import copy
 
 def write_kaggle(ann,image_id,file_to_save,ann_train,usage):
 
     i_class = list(ann.loc[ann['ImageID'] == image_id]['ClassID'])[0]
     file_to_save.write(image_id + ',')
 
+    shuffled = copy.deepcopy(ann_train)
     if usage == '':
         #Here we are writing a sample ranking generated randomly
-        to_write = ann_train['ImageID']
+        to_write = shuffled['ImageID']
         random.shuffle(to_write)
 
         for i in to_write:

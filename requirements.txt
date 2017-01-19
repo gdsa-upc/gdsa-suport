@@ -2,3 +2,8 @@ numpy
 scipy
 scikit-learn
 pandas
+h5py
+pyyaml
+Pillow
+keras
+tqdm

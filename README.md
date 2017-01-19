@@ -5,16 +5,12 @@
 - Issues: Open new issues in this repository to pose your questions.
 - Deliverables: A new issue will be created in this repository for you to upload your weekly deliverables (Google Slides). Find it and answer with a public link to your slides before the deadline.
 
-## Data download: TerrassaBuildings900
-
-Go to the [project main website](https://imatge.upc.edu/web/resources/terrassa-buildings-900) to download the dataset.
-
 ## Code Instructions
 
 ### Requirements
 - [Python 2.7](https://www.python.org/download/releases/2.7/)
 - Install pip following [these](https://pip.pypa.io/en/stable/installing/) instructions.
-- Run ```pip install -r requirements.txt``` to install code dependencies (numpy,scipy,pandas,scikit-learn). These can also be installed through the Canopy package manager.
+- Run ```pip install -r requirements.txt``` to install code dependencies.
 - Install OpenCV 2.4.x from [source](http://opencv.org/downloads.html) (instructions [here](http://docs.opencv.org/2.4/doc/tutorials/introduction/table_of_content_introduction/table_of_content_introduction.html)) or using the [package manager](https://www.enthought.com/products/canopy/package-index/) in Canopy with the free academic subscription (the latter is recommended for simplicity).
 
 Note: version 3.x of OpenCV will not work with the current version of the code since SIFT and SURF extraction modules were removed.
@@ -40,6 +36,10 @@ Note: version 3.x of OpenCV will not work with the current version of the code s
 - Run `src/eval_classification.py` to get evaluation metrics of your classifier predictions.
 - Check `notebooks/gdsa_s6.ipynb` to see a tested example.
 
-## Results
+### Kaggle rankings
 
-You can check the leaderboard in the [repository website](http://gdsa-upc.github.io/gdsa-suport/).
+There is a script ```utils/convert_to_kaggle.py ``` that will take your rankings and convert them to be uploaded to Kaggle.
+
+### Deep features (coming soon !)
+
+The script ```src/deepfeats.py``` extracts VGG-16 features using Keras and generates rankings in Kaggle format. It assumes you have first run ```src/build_database.py```. This is an alternative to the feature extraction pipeline that relies on local features (e.g. SIFT)

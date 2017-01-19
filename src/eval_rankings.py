@@ -187,10 +187,6 @@ def eval_rankings(params):
             # Store it
             ap_list.append(ap)
 
-    if params['save_for_kaggle']:
-
-        file_to_save.close()
-
     return ap_list, dict_
 
 def single_eval(params,query_id):
